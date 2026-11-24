@@ -608,3 +608,6 @@ SELECT
 OrderID,
 COUNT(*) over (PARTITION BY OrderID) checkPK
 FROM Sales.OrdersArchive;
+
+
+new
