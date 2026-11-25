@@ -34,10 +34,16 @@ unity catalog is under our control
   - buit in databrics connecting change data capture or query based capture will use
   - different conectors file conectors(pyspark code is best for fetch the data), saas conectors
 
-6. AutoLoader
+5. Auto Loader
+   - autoloader stream files from a to b
+   - new files arrives automatically arrive with every input in b folder
+   - its mostly liked with files
+   - s3 bucket files
+   - create external location
+   - in databrics aws create automatically option aws sign in with bucket name
+   - but in azure nee to create implemetn databrics connnectors with credetials for acces external loacation
    - 
-
-
+   - 
 
 
 
