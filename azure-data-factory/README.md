@@ -20,3 +20,25 @@ Work through the numbered concept files in order. Use small test datasets and av
 - [Git Integration And Cicd](concepts/15-git-integration-and-cicd.md)
 - [Performance Cost And Best Practices](concepts/16-performance-cost-and-best-practices.md)
 - [Adf End To End Practice Project](concepts/17-adf-end-to-end-practice-project.md)
+
+-----------------------------------------------------------------------------------------------
+
+# Azure Data Factory Learning Guide
+
+A beginner-friendly, practical guide to Azure Data Factory (ADF). Follow the concepts first, then study activities and triggers, and finally complete the exercises and project.
+
+## Suggested learning order
+1. Read `concepts/01-adf-introduction.md` through `16-security-and-key-vault.md`.
+2. Study the activity guides and understand when each activity is used.
+3. Learn the three trigger types.
+4. Complete beginner, intermediate, and advanced exercises in order.
+5. Build the project described in `projects/README.md`.
+
+## Core pipeline flow
+**Source → Linked service → Dataset → Pipeline activity → Sink**
+
+## Cost-conscious practice
+- Prefer small sample files and short test runs.
+- Stop or delete resources that are not needed.
+- Check pricing before creating managed services or running data flows.
+- Use existing storage/resources where practical; avoid leaving compute running.

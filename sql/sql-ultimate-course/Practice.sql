@@ -610,4 +610,48 @@ COUNT(*) over (PARTITION BY OrderID) checkPK
 FROM Sales.OrdersArchive;
 
 
-new
+select
+OrderID,
+OrderDate,
+Sales,
+ProductID,
+SUM(Sales) over() as TotalSales,
+SUM(Sales) over(partition by ProductID) as SalesbyProductID
+from sales.orders 
+
+
+select
+CustomerID,
+LastName,
+Score,
+COALESCE(score, 0) CustomerScore,
+AVG(Score) Over() AvgScore,
+AVG(COALESCE(score, 0)) Over() AvgScore
+from sales.customers
+
+
+select
+orderid,
+orderdate,
+productid,
+sales,
+max(sales) over() HS,
+min(Sales) over() LS,
+max(sales) over(partition by productid) hhs,
+min(sales) over(partition by productid) lls
+from sales.orders
+
+select
+orderid,
+orderdate,
+productid,
+sales,
+max(sales) over() HS,
+min(Sales) over() LS,
+sales - min(sales) over() hhs,
+max(sales) over() - sales lls
+from sales.orders
+
+
+
+
