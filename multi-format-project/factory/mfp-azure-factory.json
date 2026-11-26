@@ -1,0 +1,16 @@
+{
+	"name": "mfp-azure-factory",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true,
+			"isExplicitlySet": false
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2a5c5dc8-0f2b-4e76-9560-9e1b8d56514d",
+		"tenantId": "8cf2fdf1-97a8-4a15-90ef-249e9e65e161"
+	}
+}
