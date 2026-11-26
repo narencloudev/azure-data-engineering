@@ -1,0 +1,22 @@
+{
+	"name": "DS_Source_Customer_CSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_HTTP_GitHub",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "narencloudev/azure-data-engineering/main/multi-format-project/source-data/customer.csv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
