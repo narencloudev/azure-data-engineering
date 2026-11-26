@@ -1,0 +1,22 @@
+{
+  "orders": [
+    {
+      "OrderID": 1001,
+      "CustomerID": 101,
+      "OrderAmount": 3000,
+      "Status": "Completed"
+    },
+    {
+      "OrderID": 1002,
+      "CustomerID": 102,
+      "OrderAmount": 1500,
+      "Status": "Pending"
+    },
+    {
+      "OrderID": 1003,
+      "CustomerID": 103,
+      "OrderAmount": 4500,
+      "Status": "Completed"
+    }
+  ]
+}
