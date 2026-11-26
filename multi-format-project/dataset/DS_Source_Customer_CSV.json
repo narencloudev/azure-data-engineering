@@ -5,12 +5,20 @@
 			"referenceName": "LS_HTTP_GitHub",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"pRelativeURL": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "HttpServerLocation",
-				"relativeUrl": "narencloudev/azure-data-engineering/main/multi-format-project/source-data/customer.csv"
+				"relativeUrl": {
+					"value": "@dataset().pRelativeURL",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

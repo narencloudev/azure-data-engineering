@@ -1,0 +1,20 @@
+{
+	"name": "DS_File_Config_JSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLS_Retail",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "file-config.json",
+				"folderPath": "config",
+				"fileSystem": "retail-data"
+			}
+		},
+		"schema": {}
+	}
+}

@@ -1,0 +1,140 @@
+{
+	"name": "PL_Read_File_Configuration",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup_File_Configuration",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "DS_File_Config_JSON",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "ForEach_File_Configuration",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Filter_Enabled_Files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Filter_Enabled_Files').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy_Raw_File_To_Bronze",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "BinarySource",
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET"
+									},
+									"formatSettings": {
+										"type": "BinaryReadSettings"
+									}
+								},
+								"sink": {
+									"type": "BinarySink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_Source_Raw_Binary",
+									"type": "DatasetReference",
+									"parameters": {
+										"pRelativeURL": "@concat( 'narencloudev/azure-data-engineering/main/multi-format-project/', item().sourcePath )"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_Bronze_Raw_Binary",
+									"type": "DatasetReference",
+									"parameters": {
+										"pFileName": {
+											"value": "@item().fileName",
+											"type": "Expression"
+										},
+										"pDirectory": {
+											"value": "@item().destinationFolder",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "Filter_Enabled_Files",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "Lookup_File_Configuration",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_File_Configuration').output.firstRow.files",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(item().enabled, true)",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}

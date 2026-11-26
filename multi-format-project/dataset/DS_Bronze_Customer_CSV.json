@@ -5,13 +5,27 @@
 			"referenceName": "LS_ADLS_Retail",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"pFileName": {
+				"type": "string"
+			},
+			"pDirectory": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "customer.csv",
-				"folderPath": "bronze",
+				"fileName": {
+					"value": "@dataset().pFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().pDirectory",
+					"type": "Expression"
+				},
 				"fileSystem": "retail-data"
 			},
 			"columnDelimiter": ",",
