@@ -1,0 +1,6 @@
+InventoryID,ProductID,Warehouse,AvailableQuantity,LastUpdated
+1,501,Hyderabad,25,2025-06-01
+2,502,Chennai,100,2025-06-02
+3,503,Bangalore,75,2025-06-03
+4,504,Mumbai,40,2025-06-04
+5,505,Delhi,60,2025-06-05
