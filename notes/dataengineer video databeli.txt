@@ -1,1 +1,5 @@
-
+localmode, clinet mode, cluster mode
+spark apis: low level apis(RDD,Distributed Variables)
+            structured apis( dataframes, datasets,sql)
+            structured streaming, mlib &spark R, graph X & Other Libraries.
+            
